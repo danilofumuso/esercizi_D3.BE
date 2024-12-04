@@ -11,6 +11,8 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 
 public class MainDAO {
@@ -53,7 +55,6 @@ public class MainDAO {
         evento.setTipoEvento(EventoEnum.PUBBLICO);
         evento.setNumeroMassimoPartecipanti(1000);
         evento.setLocation(location);
-//        evento.setListaPartecipazioni();
 
         eventoDAO.insertEvento(evento);
 
@@ -66,6 +67,9 @@ public class MainDAO {
         partecipazione.setStato(StatoPartecipazioneEnum.CONFERMATA);
 
         partecipazioneDAO.insertPartecipazione(partecipazione);
+
+//      evento.getListaPartecipazioni().add(partecipazione);
+        evento.setListaPartecipazioni(Arrays.asList(partecipazione));
 
         em.close();
     }
