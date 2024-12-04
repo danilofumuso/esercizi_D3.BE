@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -29,5 +31,12 @@ public class Evento {
 
     @Column(name = "partecipanti_max", nullable = false)
     private int numeroMassimoPartecipanti;
+
+    @OneToOne
+    @JoinColumn(name = "location_id")
+    private Location location;
+
+    @OneToMany(mappedBy = "evento")
+    private List<Partecipazione> listaPartecipazioni = new ArrayList<>();
 
 }
